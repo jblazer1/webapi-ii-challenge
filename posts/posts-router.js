@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const posts = await Posts.find(req.query);
+    const posts = await Hubs.find(req.query);
     res.status(200).json(posts);
   } catch (error) {
     console.log(error);
@@ -31,6 +31,18 @@ router.post("/", async (req, res) => {
   } catch (error) {
     ({
       error: "There was an error while saving the post to the database"
+    });
+  }
+});
+
+// GET ================================== GET ============================= GET ============================= GET
+router.get("/", async (req, res) => {
+  try {
+    const hubs = await Hubs.find(req.query);
+    res.status(200).json(hubs);
+  } catch (error) {
+    res.status(500).json({
+      error: "The posts information could not be retrieved."
     });
   }
 });
